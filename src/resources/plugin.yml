@@ -1,0 +1,5 @@
+name: KitPvp
+main: com.blank038.kitpvp.KitPvp
+author: Blank038
+version: 1.0
+api: ['1.0.0']

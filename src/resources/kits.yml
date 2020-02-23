@@ -1,0 +1,11 @@
+# 默认职业, 可参照来增加, default 不能删除, 为默认的.
+default:
+  name: "&b剑士"
+  items:
+    - "#id=276#amount=1#name=&b钻石剑"
+    - "#id=282#amount=1#data=0#name=&b物品名#lore=&eqwq//&dQwQ"
+  # 花费多少金币可购买
+  count: 0
+  # 需要什么权限才能使用
+  permission: "kitpvp.default"
+  display: "&e剑士, 默认职业"

@@ -1,0 +1,102 @@
+# 提示
+message:
+  prefix: "&8[&e职业战争&8]: &f"
+  help:
+    default:
+      - "&8[&a职业战争&8] &e命令帮助:"
+      - "&7- &6/kp menu &3打开职业战争面板"
+      - "&7- &6/kp join [地图] &3加入职业战争"
+      - "&7- &6/kp info &3查看个人信息"
+      - "&7- &6/kp shop &3打开职业商店"
+      - "&7- &6/kp leave &3离开职业战争"
+    admin:
+      - "&8[&a职业战争&8] &e命令帮助:"
+      - "&7- &6/kp menu &3打开职业战争面板"
+      - "&7- &6/kp join [地图] &3加入职业战争"
+      - "&7- &6/kp info &3查看个人信息"
+      - "&7- &6/kp shop &3打开职业商店"
+      - "&7- &6/kp leave &3离开职业战争"
+      - "&7- &6/kp setEnd &3设置结束坐标"
+      - "&7- &6/kp pay <玩家> <数量> &3给予玩家金币"
+      - "&7- &6/kp give <玩家> <数量> &3给予玩家礼盒"
+      - "&7- &6/kp reload &3重载插件配置"
+  button:
+    join: "&2➯ 加入职业战争"
+    leave: "&c➯ 离开职业战争"
+    shop: "&d➯ 打开职业商店"
+    chest: "&3➯ 打开礼盒 &7(&e拥有 %amount%&7)"
+    select: "&c➯ 职业选择"
+    info: "&8➯ 个人信息"
+  in: "已在职业战争中!"
+  empty-maps: "&c没有可加入的竞技场!"
+  wrong-game: "&c你不在职业战争中!"
+  wrong-player: "请输入玩家名/玩家不在线!"
+  wrong-amount: "请输入要给予的数量!"
+  pay: "成功给予玩家 &b%player% &f游戏金币 &b%amount%"
+  give: "成功给予玩家 &b%player% &f礼盒 &b%amount%个"
+  info:
+    - "&8[&a职业战争&8] &e个人信息:"
+    - "&7- &f杀敌数: &b%kills%"
+    - "&7- &f死亡数: &b%deaths%"
+    - "&7- &f金币: &b%money%"
+    - "&7- &f所选职业: &b%select%"
+  info-gui:
+    true-button: "&a返回菜单"
+    false-button: "&c关闭界面"
+  deny-execute: "游戏中, 无法执行非职业战争的命令!"
+  set-end: "&e成功设置结束点!"
+  kill-message: "&f你通过击杀 &b%player% &f获得了 &b5金币"
+  death-messages:
+    - "&b%player% &f试图逃离 &b%killer% &f的追杀, 很遗憾他失败了!"
+    - "&b%player% &f被冷酷的 &b%killer% &f击杀了!"
+  buy:
+    display: "&b%kit%: &f%display% &f(售价: %amount%金币)"
+    true-button: "&a确定购买"
+    false-button: "&c我再想想"
+    success: "&a成功花费 &f%amount%金币 &a购买职业: &f%kit%"
+  shop:
+    back: "&3返回菜单"
+    shop-button: "%kit% &f> &3售价: &e%amount%金币"
+  select:
+    button: "&f%kit% &f(%status%&f)"
+    status:
+      allow: "&a可使用"
+      deny: "&c无权限"
+    no-permission: "&c你没有权限使用这个职业!"
+    success: "成功选择 &b%kit% &f为当前职业!"
+  map:
+    button: "&3%map%"
+    deny: "所选地图不存在, 请重新选择"
+    back: "&c返回菜单"
+  chest:
+    display: "&b你确定要打开一个职业礼盒吗?"
+    true-button: "&a确定打开"
+    false-button: "&c我再想想"
+    lack: "&c你的仓库空荡荡的, 没有礼盒了!"
+    deny: "&c你已经什么职业都有了!"
+    broadcast: "&f%player% &a打开礼盒获得了职业: &f%kit%"
+    content:
+      - "&a打开礼盒获得了职业: &f%kit%"
+      - "&e还要再继续打开吗?"
+  lack-money: "你没有足够的金币购买这个职业!"
+  reload: "插件配置重载完成!"
+# 标题设置
+title:
+  menu: "&8职业战争面板"
+  shop: "&8职业商店"
+  buy: "&8是否确定购买该职业?"
+  select: "&8请选择你要使用的职业"
+  map: "&8请选择要加入的地图"
+  info: "&8职业战争个人信息面板"
+  chest: "&5职业礼盒"
+# 地图列表, 对应世界名, 加入会传送至世界重生点
+map:
+  测试: "world"
+# 玩家初始默认金币数
+default-money: 1000
+# 默认礼盒箱子数
+chest: 1
+# 击杀玩家获得的金币
+kill-reward: 5
+# 蘑菇煲恢复的血量
+health: 6
