@@ -11,6 +11,8 @@ import com.blank038.kitpvp.manager.ShopManager;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class KitPvp extends PluginBase {
     private static KitPvp instance;
@@ -60,15 +62,10 @@ public class KitPvp extends PluginBase {
     }
 
     public void loadConfig() {
-        if (!getDataFolder().exists()) {
-            getDataFolder().mkdir();
-        }
+        getDataFolder().mkdir();
         saveDefaultConfig();
         reloadConfig();
-        File data = new File(getDataFolder(), "Data");
-        if (!data.exists()) {
-            data.mkdir();
-        }
+        new File(getDataFolder(), "Data").mkdir();
         // 获取提示前缀
         prefix = getConfig().getString("message.prefix").replace("&", "§");
         kitManager.init();

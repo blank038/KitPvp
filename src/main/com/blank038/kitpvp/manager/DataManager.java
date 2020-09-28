@@ -52,6 +52,10 @@ public class DataManager {
         return dataMap.containsKey(player.getName()) && dataMap.get(player.getName()).isInGame();
     }
 
+    public boolean hasPlayer(String player) {
+        return dataMap.containsKey(player) && dataMap.get(player).isInGame();
+    }
+
     public void openMenu(Player player) {
         PlayerData playerData = getPlayerData(player);
         if (playerData != null) {

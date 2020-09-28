@@ -1,23 +1,24 @@
 package com.blank038.kitpvp.listener;
 
 import cn.nukkit.Player;
+import cn.nukkit.block.BlockID;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.block.BlockPlaceEvent;
+import cn.nukkit.event.entity.EntityRegainHealthEvent;
 import cn.nukkit.event.player.*;
 import cn.nukkit.item.Item;
-import cn.nukkit.item.food.Food;
 import com.blank038.kitpvp.KitPvp;
 import com.blank038.kitpvp.api.interfaces.MainGui;
 import com.blank038.kitpvp.data.PlayerData;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class PlayerListener implements Listener {
+    private final List<String> healer = new ArrayList<>();
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
@@ -73,6 +74,17 @@ public class PlayerListener implements Listener {
     }
 
     @EventHandler
+    public void onHealth(EntityRegainHealthEvent event) {
+        if (event.getEntity() instanceof Player && KitPvp.getDataManager().hasPlayer(event.getEntity().getName())) {
+            if (!healer.contains(event.getEntity().getName())) {
+                event.setCancelled(true);
+            } else {
+                healer.remove(event.getEntity().getName());
+            }
+        }
+    }
+
+    @EventHandler
     public void onBreak(BlockBreakEvent event) {
         if (KitPvp.getDataManager().hasPlayer(event.getPlayer())) {
             event.setCancelled(true);
@@ -87,14 +99,21 @@ public class PlayerListener implements Listener {
     }
 
     @EventHandler
-    public void onEat(PlayerEatFoodEvent event) {
-        if (KitPvp.getDataManager().hasPlayer(event.getPlayer())) {
-            if (event.getFood().equals(Food.getByRelative(282, 0))) {
-                Player player = event.getPlayer();
-                float health = player.getHealth() + KitPvp.getInstance().getConfig().getInt("health");
-                health = (health > player.getMaxHealth()) ? player.getMaxHealth() : health;
-                player.setHealth(health);
+    public void onInteract(PlayerInteractEvent event) {
+        Item item = event.getPlayer().getInventory().getItemInHand();
+        if (KitPvp.getDataManager().hasPlayer(event.getPlayer()) && item != null && item.getId() == 282) {
+            if (item.getCount() == 1) {
+                event.getPlayer().getInventory().setItemInHand(new Item(BlockID.AIR));
+            } else {
+                item.setCount(item.getCount() - 1);
+                event.getPlayer().getInventory().setItemInHand(item);
             }
+            Player player = event.getPlayer();
+            float health = player.getHealth() + KitPvp.getInstance().getConfig().getInt("health");
+            health = (health > player.getMaxHealth()) ? player.getMaxHealth() : health;
+            // 将玩家加入允许列表
+            healer.add(player.getName());
+            player.setHealth(health);
         }
     }
 
